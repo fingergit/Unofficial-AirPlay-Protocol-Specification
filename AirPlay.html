@@ -1,6 +1,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh-CN">
   <head>
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
     <meta http-equiv="Content-language" content="en"/>
@@ -508,19 +508,15 @@ Connection: Upgrade
             (link this connection to the other (non-reverse) one)。 事件通过<code>POST</code>请求来发送，内容为XML属性表，
             地址为<code>/event</code>。</p>
 
-      <h1 id="photos">3. Photos</h1>
-      <p>Photos are <em>JPEG</em> data transmitted using a <code>PUT</code> request to the AirPlay
-      server. They can be displayed immediately, or cached for future use.</p>
+      <h1 id="photos">3. 照片</h1>
+      <p>照片是<em>JPEG</em>数据，通过<code>PUT</code>请求传输到AirPlay服务器。它们可以立即显示，也可以缓存以备将来使用。</p>
 
-      <h2 id="photos-httprequests">3.1. HTTP requests</h2>
+      <h2 id="photos-httprequests">3.1. HTTP请求</h2>
       <h3>GET /slideshow-features</h3>
 
-      <p>A client can fetch the list of available transitions for slideshows.
-      Then it can let the user pick one, before starting a slideshow. The
-      <code>Accept-Language</code> header is used to specify in which language the
-      transition names should be.</p>
+      <p>客户端可以获取幻灯片显示的转场列表。可以让用户在开始幻灯片放映之前选择一个。<code>Accept-Language</code>头用于指定转场名称的语言。</p>
 
-      <p class="cli_srv">client &rarr; server</p>
+      <p class="cli_srv">客户端 &rarr; 服务器</p>
 
       <pre><code>GET /slideshow-features HTTP/1.1
 Accept-Language: English
@@ -529,7 +525,7 @@ User-Agent: MediaControl/1.0
 X-Apple-Session-ID: cdda804c-33ae-4a0b-a5f2-f0e532fd5abd
 </code></pre>
 
-      <p class="srv_cli">server &rarr; client</p>
+      <p class="srv_cli">服务器 &rarr; 客户端</p>
 
       <pre><code>HTTP/1.1 200 OK
 Date: Thu, 23 Feb 2012 17:33:41 GMT
@@ -557,7 +553,7 @@ Content-Length: 6411
 
       <h3>PUT /photo</h3>
 
-      <p>Send a JPEG picture to the server. The following headers are supported:</p>
+      <p>向服务器发送一张JPEG图片。支持以下标头：</p>
 
       <table>
       <colgroup>
@@ -567,29 +563,29 @@ Content-Length: 6411
 
       <thead>
       <tr>
-       <th style="text-align:left;">name</th>
-       <th style="text-align:left;">description</th>
+       <th style="text-align:left;">名称</th>
+       <th style="text-align:left;">描述</th>
       </tr>
       </thead>
 
       <tbody>
       <tr>
        <td style="text-align:left;"><code>X-Apple-AssetKey</code></td>
-       <td style="text-align:left;">UUID for the picture</td>
+       <td style="text-align:left;">图片的UUID</td>
       </tr>
       <tr>
        <td style="text-align:left;"><code>X-Apple-Transition</code></td>
-       <td style="text-align:left;">transition that should be used to show the picture</td>
+       <td style="text-align:left;">图片的转场</td>
       </tr>
       <tr>
        <td style="text-align:left;"><code>X-Apple-AssetAction</code></td>
-       <td style="text-align:left;">specify a caching operation</td>
+       <td style="text-align:left;">指定缓存操作</td>
       </tr>
       </tbody>
       </table>
-      <p><span class="ex">Example 1:</span> show a picture without any transition (for the first time)</p>
+      <p><span class="ex">示例1：</span> 显示没有任何过渡的图片（第一次）</p>
 
-      <p class="cli_srv">client &rarr; server</p>
+      <p class="cli_srv">客户端 &rarr; 服务器</p>
 
       <pre><code>PUT /photo HTTP/1.1
 X-Apple-AssetKey: F92F9B91-954E-4D63-BB9A-EEC771ADE6E8
@@ -600,16 +596,16 @@ X-Apple-Session-ID: 1bd6ceeb-fffd-456c-a09c-996053a7a08c
 &lt;JPEG DATA&gt;
 </code></pre>
 
-      <p class="srv_cli">server &rarr; client</p>
+      <p class="srv_cli">服务器 &rarr; 客户端</p>
 
       <pre><code>HTTP/1.1 200 OK
 Date: Thu, 23 Feb 2012 17:33:42 GMT
 Content-Length: 0
 </code></pre>
 
-      <p><span class="ex">Example 2:</span> show a picture using the dissolve transition</p>
+      <p><span class="ex">示例2：</span> 使用溶解（Dissolve）转场显示图片</p>
 
-      <p class="cli_srv">client &rarr; server</p>
+      <p class="cli_srv">客户端 &rarr; 服务器</p>
 
       <pre><code>PUT /photo HTTP/1.1
 X-Apple-AssetKey: F92F9B91-954E-4D63-BB9A-EEC771ADE6E8
@@ -621,7 +617,7 @@ X-Apple-Session-ID: 1bd6ceeb-fffd-456c-a09c-996053a7a08c
 &lt;JPEG DATA&gt;
 </code></pre>
 
-      <p class="srv_cli">server &rarr; client</p>
+      <p class="srv_cli">服务器 &rarr; 客户端</p>
 
       <pre><code>HTTP/1.1 200 OK
 Date: Thu, 23 Feb 2012 17:33:42 GMT
@@ -630,9 +626,7 @@ Content-Length: 0
 
       <h3>PUT /slideshows/1</h3>
 
-      <p>Start or stop a slideshow session. When starting, slideshow settings
-      such as the slide duration and selected transition theme are
-      transmitted. The following parameters are sent in an XML property list:</p>
+      <p>开始或停止一个幻灯片放映会话。开始时，将传输幻灯片设置，例如幻灯片持续时间和选定的转场方式。以下参数在XML属性列表中发送：</p>
 
       <table>
       <colgroup>
@@ -643,9 +637,9 @@ Content-Length: 0
 
       <thead>
       <tr>
-       <th style="text-align:left;">key</th>
-       <th style="text-align:left;">type</th>
-       <th style="text-align:left;">description</th>
+       <th style="text-align:left;">键</th>
+       <th style="text-align:left;">类型</th>
+       <th style="text-align:left;">描述</th>
       </tr>
       </thead>
 
@@ -653,23 +647,23 @@ Content-Length: 0
       <tr>
        <td style="text-align:left;">settings.slideDuration</td>
        <td style="text-align:left;">integer</td>
-       <td style="text-align:left;">slide duration in seconds</td>
+       <td style="text-align:left;">幻灯片持续时间（以秒为单位）</td>
       </tr>
       <tr>
        <td style="text-align:left;">settings.theme</td>
        <td style="text-align:left;">string</td>
-       <td style="text-align:left;">selected transition theme</td>
+       <td style="text-align:left;">转场方式</td>
       </tr>
       <tr>
        <td style="text-align:left;">state</td>
        <td style="text-align:left;">string</td>
-       <td style="text-align:left;"><code>playing</code> or <code>stopped</code></td>
+       <td style="text-align:left;"><code>播放</code>还是<code>停止</code></td>
       </tr>
       </tbody>
       </table>
-      <p><span class="ex">Example:</span> send slideshow settings</p>
+      <p><span class="ex">示例：</span>发送幻灯片设置</p>
 
-      <p class="cli_srv">client &rarr; server</p>
+      <p class="cli_srv">客户端 &rarr; 服务器</p>
 
       <pre><code>PUT /slideshows/1 HTTP/1.1
 Content-Type: text/x-apple-plist+xml
@@ -695,7 +689,7 @@ X-Apple-Session-ID: 98a7b246-8e00-49a6-8765-db57165f5b67
 &lt;/plist&gt;
 </code></pre>
 
-      <p class="srv_cli">server &rarr; client</p>
+      <p class="srv_cli">服务器 &rarr; 客户端</p>
 
       <pre><code>HTTP/1.1 200 OK
 Date: Thu, 08 Mar 2012 16:30:01 GMT
@@ -712,9 +706,9 @@ Content-Length: 181
 
       <h3>POST /stop</h3>
 
-      <p>Stop a photo or slideshow session.</p>
+      <p>停止一个照片或幻灯片会话。</p>
 
-      <p class="cli_srv">client &rarr; server</p>
+      <p class="cli_srv">客户端 &rarr; 服务器</p>
 
       <pre><code>POST /stop HTTP/1.1
 Content-Length: 0
@@ -722,18 +716,17 @@ User-Agent: MediaControl/1.0
 X-Apple-Session-ID: 1bd6ceeb-fffd-456c-a09c-996053a7a08c
 </code></pre>
 
-      <p class="srv_cli">server &rarr; client</p>
+      <p class="srv_cli">服务器 &rarr; 客户端</p>
 
       <pre><code>HTTP/1.1 200 OK
 Date: Thu, 23 Feb 2012 17:33:55 GMT
 Content-Length: 0
 </code></pre>
 
-      <h2 id="photos-events">3.2. Events</h2>
-      <h3>Photo</h3>
+      <h2 id="photos-events">3.2. 事件</h2>
+      <h3>照片（Photo）</h3>
 
-      <p>This event notifies a client that a photo session has ended. Then the
-      server can safely disconnect.</p>
+      <p>此事件通知客户端照片会话已结束。然后，服务器安全地断开连接。</p>
 
       <table>
       <colgroup>
@@ -744,9 +737,9 @@ Content-Length: 0
 
       <thead>
       <tr>
-       <th style="text-align:left;">key</th>
-       <th style="text-align:left;">type</th>
-       <th style="text-align:left;">description</th>
+       <th style="text-align:left;">键</th>
+       <th style="text-align:left;">类型</th>
+       <th style="text-align:left;">描述</th>
       </tr>
       </thead>
 
@@ -759,7 +752,7 @@ Content-Length: 0
       <tr>
        <td style="text-align:left;">sessionID</td>
        <td style="text-align:left;">integer</td>
-       <td style="text-align:left;">session ID</td>
+       <td style="text-align:left;">会话ID</td>
       </tr>
       <tr>
        <td style="text-align:left;">state</td>
@@ -768,9 +761,9 @@ Content-Length: 0
       </tr>
       </tbody>
       </table>
-      <p><span class="ex">Example:</span> stop photo session</p>
+      <p><span class="ex">示例：</span> 结束照片会话</p>
 
-      <p class="srv_cli">server &rarr; client</p>
+      <p class="srv_cli">服务器 &rarr; 客户端</p>
 
       <pre><code>POST /event HTTP/1.1
 Content-Type: text/x-apple-plist+xml
@@ -792,15 +785,15 @@ X-Apple-Session-ID: 1bd6ceeb-fffd-456c-a09c-996053a7a08c
 &lt;/plist&gt;
 </code></pre>
 
-      <p class="cli_srv">client &rarr; server</p>
+      <p class="cli_srv">客户端 &rarr; 服务器</p>
 
       <pre><code>HTTP/1.1 200 OK
 Content-Length: 0
 </code></pre>
 
-      <h3>Slideshow</h3>
+      <h3>幻灯片（Slideshow）</h3>
 
-      <p>Slideshow events are used to notify the server about the playback state.</p>
+      <p>此事件通知服务器当前的播放状态。（译注：怀疑作者笔误，应是向客户端通知）</p>
 
       <table>
       <colgroup>
@@ -811,9 +804,9 @@ Content-Length: 0
 
       <thead>
       <tr>
-       <th style="text-align:left;">key</th>
-       <th style="text-align:left;">type</th>
-       <th style="text-align:left;">description</th>
+       <th style="text-align:left;">键</th>
+       <th style="text-align:left;">类型</th>
+       <th style="text-align:left;">描述</th>
       </tr>
       </thead>
 
@@ -826,23 +819,23 @@ Content-Length: 0
       <tr>
        <td style="text-align:left;">lastAssetID</td>
        <td style="text-align:left;">integer</td>
-       <td style="text-align:left;">last asset ID</td>
+       <td style="text-align:left;">最后一张照片（Asset）ID</td>
       </tr>
       <tr>
        <td style="text-align:left;">sessionID</td>
        <td style="text-align:left;">integer</td>
-       <td style="text-align:left;">session ID</td>
+       <td style="text-align:left;">会话ID</td>
       </tr>
       <tr>
        <td style="text-align:left;">state</td>
        <td style="text-align:left;">string</td>
-       <td style="text-align:left;"><code>loading</code>, <code>playing</code> or <code>stopped</code></td>
+       <td style="text-align:left;"><code>loading</code>, <code>playing</code>还是<code>stopped</code></td>
       </tr>
       </tbody>
       </table>
-      <p><span class="ex">Example:</span> slideshow is currently playing</p>
+      <p><span class="ex">示例：</span> 当前正在播放幻灯片</p>
 
-      <p class="srv_cli">server &rarr; client</p>
+      <p class="srv_cli">服务器 &rarr; 客户端</p>
 
       <pre><code>POST /event HTTP/1.1
 Content-Type: text/x-apple-plist+xml
@@ -866,29 +859,23 @@ X-Apple-Session-ID: f1634b51-5cae-4384-ade5-54f4159a15f1
 &lt;/plist&gt;
 </code></pre>
 
-      <p class="cli_srv">client &rarr; server</p>
+      <p class="cli_srv">客户端 &rarr; 服务器</p>
 
       <pre><code>HTTP/1.1 200 OK
 Content-Length: 0
 </code></pre>
 
-      <h2 id="photos-photocaching">3.3. Photo Caching</h2>
-      <p>AirPlay supports preloading picture data to improve transition latency.
-      This works by preloading a few pictures (most likely the ones before and
-      after the current picture) just after displaying one.</p>
+      <h2 id="photos-photocaching">3.3. 照片缓存</h2>
+      <p>AirPlay支持预加载图片数据以改善转场延迟。这是通过在显示一幅图片后预加载几张图片（最有可能是当前图片之前和之后的图片）来实现的。</p>
 
-      <p>Preloading is achieved using the <code>cacheOnly</code> asset action. Upon
-      receiving this request, a server stores the picture in its cache. Later,
-      a client can request the display of this picture using the
-      <code>displayCached</code> asset action and the same asset key. This is much faster
-      than a full picture upload because no additional data is transmitted.</p>
+      <p>使用<code>cacheOnly</code>资产操作来实现预加载。收到此请求后，服务器会将图片存储在它的缓存中。
+      稍后，客户端可以使用<code>displayCached</code>资产操作和相同的资产键值请求显示此图片 。这比再完整上传图片要快得多，因为不会传输其他数据。</p>
+            
+      <p>当缓存中不存在此图片时，服务器会回复一个HTTP 412错误代码（前提条件失败）。</p>
 
-      <p>When asked for a picture which is no longer in the cache, a server
-      replies with an HTTP 412 error code (Precondition Failed).</p>
+      <p><span class="ex">示例1：</span>缓存图片以供将来显示</p>
 
-      <p><span class="ex">Example 1:</span> cache a picture for future display</p>
-
-      <p class="cli_srv">client &rarr; server</p>
+      <p class="cli_srv">客户端 &rarr; 服务器</p>
 
       <pre><code>PUT /photo HTTP/1.1
 X-Apple-AssetAction: cacheOnly
@@ -900,16 +887,16 @@ X-Apple-Session-ID: 1bd6ceeb-fffd-456c-a09c-996053a7a08c
 &lt;JPEG DATA&gt;
 </code></pre>
 
-      <p class="srv_cli">server &rarr; client</p>
+      <p class="srv_cli">服务器 &rarr; 客户端</p>
 
       <pre><code>HTTP/1.1 200 OK
 Date: Thu, 23 Feb 2012 17:33:45 GMT
 Content-Length: 0
 </code></pre>
 
-      <p><span class="ex">Example 2:</span> show a cached picture</p>
+      <p><span class="ex">示例2：</span>显示缓存的图片</p>
 
-      <p class="cli_srv">client &rarr; server</p>
+      <p class="cli_srv">客户端 &rarr; 服务器</p>
 
       <pre><code>PUT /photo HTTP/1.1
 X-Apple-AssetAction: displayCached
@@ -920,20 +907,16 @@ User-Agent: MediaControl/1.0
 X-Apple-Session-ID: 1bd6ceeb-fffd-456c-a09c-996053a7a08c
 </code></pre>
 
-      <p class="srv_cli">server &rarr; client</p>
+      <p class="srv_cli">服务器 &rarr; 客户端</p>
 
       <pre><code>HTTP/1.1 200 OK
 Date: Thu, 23 Feb 2012 17:33:45 GMT
 Content-Length: 0
 </code></pre>
 
-      <h2 id="photos-slideshows">3.4. Slideshows</h2>
-      <p>Slideshows are using the reverse HTTP connection for asynchronous
-      loading of pictures. Three connections are performed in parallel. The
-      <code>X-Apple-Purpose</code> header is set to <code>slideshow</code>. A <code>GET</code> request to the
-      <code>/slideshows/1/assets/1</code> location is issued to fetch a new picture from
-      the AirPlay client. A binary property list with the following parameters
-      is expected as reply:</p>
+      <h2 id="photos-slideshows">3.4. 幻灯片放映</h2>
+      <p>幻灯片使用反向HTTP连接来异步加载图片。并行执行三个连接。该<code>X-Apple-Purpose</code>标头设置为<code>slideshow</code>。
+      向<code>/slideshows/1/assets/1</code>地址发送<code>GET</code>请求，以从AirPlay客户端获取新图片。期望得到带有以下参数的二进制属性列表：</p>
 
       <table>
       <colgroup>
@@ -944,9 +927,9 @@ Content-Length: 0
 
       <thead>
       <tr>
-       <th style="text-align:left;">key</th>
-       <th style="text-align:left;">type</th>
-       <th style="text-align:left;">description</th>
+       <th style="text-align:left;">键</th>
+       <th style="text-align:left;">类型</th>
+       <th style="text-align:left;">描述</th>
       </tr>
       </thead>
 
@@ -954,12 +937,12 @@ Content-Length: 0
       <tr>
        <td style="text-align:left;">data</td>
        <td style="text-align:left;">data</td>
-       <td style="text-align:left;">JPEG picture</td>
+       <td style="text-align:left;">JPEG图片</td>
       </tr>
       <tr>
        <td style="text-align:left;">info.id</td>
        <td style="text-align:left;">integer</td>
-       <td style="text-align:left;">asset ID</td>
+       <td style="text-align:left;">资产ID</td>
       </tr>
       <tr>
        <td style="text-align:left;">info.key</td>
@@ -968,9 +951,9 @@ Content-Length: 0
       </tr>
       </tbody>
       </table>
-      <p><span class="ex">Example:</span> fetch a new picture</p>
+      <p><span class="ex">示例：</span>获取新图片</p>
 
-      <p class="srv_cli">server &rarr; client</p>
+      <p class="srv_cli">服务器 &rarr; 客户端</p>
 
       <pre><code>GET /slideshows/1/assets/1 HTTP/1.1
 Content-Length: 0
@@ -978,7 +961,7 @@ Accept: application/x-apple-binary-plist
 X-Apple-Session-ID: 98a7b246-8e00-49a6-8765-db57165f5b67
 </code></pre>
 
-      <p class="cli_srv">client &rarr; server</p>
+      <p class="cli_srv">客户端 &rarr; 服务器</p>
 
       <pre><code>HTTP/1.1 200 OK
 Content-Type: application/x-apple-binary-plist
@@ -1006,16 +989,13 @@ Content-Length: 58932
 &lt;/plist&gt;
 </code></pre>
 
-      <h1 id="video">4. Video</h1>
-      <p>In order to play a video on an AirPlay server, HTTP requests are used to
-      send a video URL, perform scrubbing, change the playback rate and update
-      the timeline.</p>
+      <h1 id="video">4. 视频</h1>
+      <p>为了在AirPlay服务器上播放视频，通过HTTP请求来发送视频URL，执行清理，更改播放速率和更新时间线。</p>
 
-      <h2 id="video-httprequests">4.1. HTTP requests</h2>
+      <h2 id="video-httprequests">4.1. HTTP请求</h2>
       <h3>GET /server-info</h3>
 
-      <p>Fetch general informations about the AirPlay server. These informations
-      are returned as an XML property list, with the following properties:</p>
+      <p>获取有关AirPlay服务器的常规信息。这些信息以XML属性列表形式返回：</p>
 
       <table>
       <colgroup>
@@ -1027,10 +1007,10 @@ Content-Length: 58932
 
       <thead>
       <tr>
-       <th style="text-align:left;">key</th>
-       <th style="text-align:left;">type</th>
-       <th style="text-align:left;">value</th>
-       <th style="text-align:left;">description</th>
+       <th style="text-align:left;">键</th>
+       <th style="text-align:left;">类型</th>
+       <th style="text-align:left;">值</th>
+       <th style="text-align:left;">描述</th>
       </tr>
       </thead>
 
@@ -1039,7 +1019,7 @@ Content-Length: 58932
        <td style="text-align:left;">deviceid</td>
        <td style="text-align:left;">string</td>
        <td style="text-align:left;">58:55:CA:1A:E2:88</td>
-       <td style="text-align:left;">MAC address</td>
+       <td style="text-align:left;">MAC地址</td>
       </tr>
       <tr>
        <td style="text-align:left;">features</td>
@@ -1051,28 +1031,27 @@ Content-Length: 58932
        <td style="text-align:left;">model</td>
        <td style="text-align:left;">string</td>
        <td style="text-align:left;">AppleTV2,1</td>
-       <td style="text-align:left;">device model</td>
+       <td style="text-align:left;">设备型号</td>
       </tr>
       <tr>
        <td style="text-align:left;">protovers</td>
        <td style="text-align:left;">string</td>
        <td style="text-align:left;">1.0</td>
-       <td style="text-align:left;">protocol version</td>
+       <td style="text-align:left;">协议版本</td>
       </tr>
       <tr>
        <td style="text-align:left;">srcvers</td>
        <td style="text-align:left;">string</td>
        <td style="text-align:left;">120.2</td>
-       <td style="text-align:left;">server version</td>
+       <td style="text-align:left;">服务器版本</td>
       </tr>
       </tbody>
       </table>
-      <p>The <code>model</code>, <code>deviceid</code>, <code>srcvers</code> and <code>features</code> properties are the
-      same as broadcasted by the mDNS AirPlay service.</p>
+      <p><code>model</code>、<code>deviceid</code>、<code>srcvers</code>和<code>features</code>属性和通过mDNS AirPlay服务广播的属性相同。</p>
 
-      <p><span class="ex">Example:</span> fetch server informations</p>
+      <p><span class="ex">示例：</span>获取服务器信息</p>
 
-      <p class="cli_srv">client &rarr; server</p>
+      <p class="cli_srv">客户端 &rarr; 服务器</p>
 
       <pre><code>GET /server-info HTTP/1.1
 X-Apple-Device-ID: 0xdc2b61a0ce79
@@ -1081,7 +1060,7 @@ User-Agent: MediaControl/1.0
 X-Apple-Session-ID: 1bd6ceeb-fffd-456c-a09c-996053a7a08c
 </code></pre>
 
-      <p class="srv_cli">server &rarr; client</p>
+      <p class="srv_cli">服务器 &rarr; 客户端</p>
 
       <pre><code>HTTP/1.1 200 OK
 Date: Thu, 23 Feb 2012 17:33:41 GMT
@@ -1109,7 +1088,7 @@ Content-Length: 427
 
       <h3>POST /play</h3>
 
-      <p>Start video playback. The body contains the following parameters:</p>
+      <p>开始播放视频。Body包含以下参数：</p>
 
       <table>
       <colgroup>
@@ -1120,9 +1099,9 @@ Content-Length: 427
 
       <thead>
       <tr>
-       <th style="text-align:left;">name</th>
-       <th style="text-align:left;">type</th>
-       <th style="text-align:left;">description</th>
+       <th style="text-align:left;">名称</th>
+       <th style="text-align:left;">类型</th>
+       <th style="text-align:left;">描述</th>
       </tr>
       </thead>
 
@@ -1130,27 +1109,23 @@ Content-Length: 427
       <tr>
        <td style="text-align:left;"><code>Content-Location</code></td>
        <td style="text-align:left;">URL</td>
-       <td style="text-align:left;">URL for the video</td>
+       <td style="text-align:left;">影片的URL</td>
       </tr>
       <tr>
        <td style="text-align:left;"><code>Start-Position</code></td>
        <td style="text-align:left;">float</td>
-       <td style="text-align:left;">starting position between 0 and 1</td>
+       <td style="text-align:left;">起始位置介于0和1之间</td>
       </tr>
       </tbody>
       </table>
-      <p>MP4 movies are supported using progressive download. <a href="http://tools.ietf.org/id/draft-pantos-http-live-streaming-07.txt">HTTP Live Streaming</a>
-      might be supported as well, as indicated by the <code>VideoHTTPLiveStreams</code>
-      feature flag. The relative starting position, a float value between 0
-      (beginning) and 1 (end) is used to start playing a video at the exact same
-      position as it was on the client.</p>
+      <p>支持渐进式下载MP4电影。 如<code>VideoHTTPLiveStreams</code>功能标志所示，
+      也可能支持<a href="http://tools.ietf.org/id/draft-pantos-http-live-streaming-07.txt">HTTP Live Streaming</a>。
+      介于0（开始）和1（结束）之间的浮点值，相对的起始位置，用于在与客户端完全相同的位置开始播放视频。</p>
+      <p>还可以使用内容类型为<code>application/x-apple-binary-plist</code>的二进制属性列表代替文本参数。</p>
 
-      <p>A binary property list can also be used instead of text parameters, with
-      content type <code>application/x-apple-binary-plist</code>.</p>
+      <p><span class="ex">示例1：</span>从iTunes播放视频</p>
 
-      <p><span class="ex">Example 1:</span> video playback from iTunes</p>
-
-      <p class="cli_srv">client &rarr; server</p>
+      <p class="cli_srv">客户端 &rarr; 服务器</p>
 
       <pre><code>POST /play HTTP/1.1
 User-Agent: iTunes/10.6 (Macintosh; Intel Mac OS X 10.7.3) AppleWebKit/535.18.5
@@ -1161,16 +1136,16 @@ Content-Location: http://192.168.1.18:3689/airplay.mp4?database-spec='dmap.persi
 Start-Position: 0.174051
 </code></pre>
 
-      <p class="srv_cli">server &rarr; client</p>
+      <p class="srv_cli">服务器 &rarr; 客户端</p>
 
       <pre><code>HTTP/1.1 200 OK
 Date: Mon, 08 Mar 2012 18:08:25 GMT
 Content-Length: 0
 </code></pre>
 
-      <p><span class="ex">Example 2:</span> video playback from iPhone</p>
+      <p><span class="ex">示例2：</span>从iPhone播放视频</p>
 
-      <p class="cli_srv">client &rarr; server</p>
+      <p class="cli_srv">客户端 &rarr; 服务器</p>
 
       <pre><code>POST /play HTTP/1.1
 X-Transmit-Date: 2012-03-16T14:20:39.656533Z
@@ -1194,26 +1169,25 @@ X-Apple-Session-ID: 368e90a4-5de6-4196-9e58-9917bdd4ffd7
 &lt;/plist&gt;
 </code></pre>
 
-      <p class="srv_cli">server &rarr; client</p>
+      <p class="srv_cli">服务器 &rarr; 客户端</p>
 
       <pre><code>HTTP/1.1 200 OK
 </code></pre>
 
       <h3>POST /scrub</h3>
 
-      <p>Seek at an arbitrary location in the video. The <code>position</code> argument is a
-      float value representing the location in seconds.</p>
+      <p>定位到视频中的任意位置。该<code>position</code>参数是一个浮点值，表示以秒为单位的位置。</p>
 
-      <p><span class="ex">Example:</span> seek to about 20 seconds</p>
+      <p><span class="ex">范例：</span> 定位到约20秒</p>
 
-      <p class="cli_srv">client &rarr; server</p>
+      <p class="cli_srv">客户端 &rarr; 服务器</p>
 
       <pre><code>POST /scrub?position=20.097000 HTTP/1.1
 User-Agent: iTunes/10.6 (Macintosh; Intel Mac OS X 10.7.3) AppleWebKit/535.18.5
 Content-Length: 0
 </code></pre>
 
-      <p class="srv_cli">server &rarr; client</p>
+      <p class="srv_cli">服务器 &rarr; 客户端</p>
 
       <pre><code>HTTP/1.1 200 OK
 Date: Mon, 08 Mar 2012 18:08:42 GMT
@@ -1222,20 +1196,18 @@ Content-Length: 0
 
       <h3>POST /rate</h3>
 
-      <p>Change the playback rate. The <code>value</code> argument is a float value
-      representing the playback rate: 0 is paused, 1 is playing at the normal
-      speed.</p>
+      <p>更改播放速率。<code>value</code>参数是一个浮点值，表示播放速率：0-暂停，1-以正常速度播放。</p>
 
-      <p><span class="ex">Example:</span> pause playback</p>
+      <p><span class="ex">示例：</span>暂停播放</p>
 
-      <p class="cli_srv">client &rarr; server</p>
+      <p class="cli_srv">客户端 &rarr; 服务器</p>
 
       <pre><code>POST /rate?value=0.000000 HTTP/1.1
 User-Agent: iTunes/10.6 (Macintosh; Intel Mac OS X 10.7.3) AppleWebKit/535.18.5
 Content-Length: 0
 </code></pre>
 
-      <p class="srv_cli">server &rarr; client</p>
+      <p class="srv_cli">服务器 &rarr; 客户端</p>
 
       <pre><code>HTTP/1.1 200 OK
 Date: Mon, 08 Mar 2012 18:08:37 GMT
@@ -1244,18 +1216,18 @@ Content-Length: 0
 
       <h3>POST /stop</h3>
 
-      <p>Stop playback.</p>
+      <p>停止播放。</p>
 
-      <p><span class="ex">Example:</span> stop playback</p>
+      <p><span class="ex">示例：</span>停止播放</p>
 
-      <p class="cli_srv">client &rarr; server</p>
+      <p class="cli_srv">客户端 &rarr; 服务器</p>
 
       <pre><code>POST /stop HTTP/1.1
 User-Agent: iTunes/10.6 (Macintosh; Intel Mac OS X 10.7.3) AppleWebKit/535.18.5
 Content-Length: 0
 </code></pre>
 
-      <p class="srv_cli">server &rarr; client</p>
+      <p class="srv_cli">服务器 &rarr; 客户端</p>
 
       <pre><code>HTTP/1.1 200 OK
 Date: Mon, 08 Mar 2012 18:09:06 GMT
@@ -1264,8 +1236,7 @@ Content-Length: 0
 
       <h3>GET /scrub</h3>
 
-      <p>Retrieve the current playback position. This can be called repeatedly to
-      update a timeline on the client. The following parameters are returned:</p>
+      <p>获取当前播放位置。可以重复调来更新客户端上的进度条。返回以下参数：</p>
 
       <table>
       <colgroup>
@@ -1276,9 +1247,9 @@ Content-Length: 0
 
       <thead>
       <tr>
-       <th style="text-align:left;">name</th>
-       <th style="text-align:left;">type</th>
-       <th style="text-align:left;">description</th>
+       <th style="text-align:left;">名称</th>
+       <th style="text-align:left;">类型</th>
+       <th style="text-align:left;">描述</th>
       </tr>
       </thead>
 
@@ -1286,25 +1257,25 @@ Content-Length: 0
       <tr>
        <td style="text-align:left;"><code>duration</code></td>
        <td style="text-align:left;">float</td>
-       <td style="text-align:left;">duration in seconds</td>
+       <td style="text-align:left;">时长（秒）</td>
       </tr>
       <tr>
        <td style="text-align:left;"><code>position</code></td>
        <td style="text-align:left;">float</td>
-       <td style="text-align:left;">position in seconds</td>
+       <td style="text-align:left;">位置（秒）</td>
       </tr>
       </tbody>
       </table>
-      <p><span class="ex">Example:</span> fetch current playback progress</p>
+      <p><span class="ex">示例：</span>获取当前播放进度</p>
 
-      <p class="cli_srv">client &rarr; server</p>
+      <p class="cli_srv">客户端 &rarr; 服务器</p>
 
       <pre><code>GET /scrub HTTP/1.1
 User-Agent: iTunes/10.6 (Macintosh; Intel Mac OS X 10.7.3) AppleWebKit/535.18.5
 Content-Length: 0
 </code></pre>
 
-      <p class="srv_cli">server &rarr; client</p>
+      <p class="srv_cli">服务器 &rarr; 客户端</p>
 
       <pre><code>HTTP/1.1 200 OK
 Date: Mon, 08 Mar 2012 18:08:31 GMT
@@ -1317,9 +1288,7 @@ position: 14.467000
 
       <h3>GET /playback-info</h3>
 
-      <p>Retrieve playback informations such as position, duration, rate,
-      buffering status and more. An XML property list is returned with the
-      following parameters:</p>
+      <p>获取播放信息，例如位置、时长、速率、缓冲状态等。返回带有以下参数的XML属性列表：</p>
 
       <table>
       <colgroup>
@@ -1330,9 +1299,9 @@ position: 14.467000
 
       <thead>
       <tr>
-       <th style="text-align:left;">key</th>
-       <th style="text-align:left;">type</th>
-       <th style="text-align:left;">description</th>
+       <th style="text-align:left;">键</th>
+       <th style="text-align:left;">类型</th>
+       <th style="text-align:left;">描述</th>
       </tr>
       </thead>
 
@@ -1340,51 +1309,51 @@ position: 14.467000
       <tr>
        <td style="text-align:left;"><code>duration</code></td>
        <td style="text-align:left;">real</td>
-       <td style="text-align:left;">playback duration in seconds</td>
+       <td style="text-align:left;">播放时长（秒）</td>
       </tr>
       <tr>
        <td style="text-align:left;"><code>position</code></td>
        <td style="text-align:left;">real</td>
-       <td style="text-align:left;">playback position in seconds</td>
+       <td style="text-align:left;">播放位置（秒）</td>
       </tr>
       <tr>
        <td style="text-align:left;"><code>rate</code></td>
        <td style="text-align:left;">real</td>
-       <td style="text-align:left;">playback rate</td>
+       <td style="text-align:left;">播放速率</td>
       </tr>
       <tr>
        <td style="text-align:left;"><code>readyToPlay</code></td>
        <td style="text-align:left;">boolean</td>
-       <td style="text-align:left;">ready to play</td>
+       <td style="text-align:left;">准备播放</td>
       </tr>
       <tr>
        <td style="text-align:left;"><code>playbackBufferEmpty</code></td>
        <td style="text-align:left;">boolean</td>
-       <td style="text-align:left;">buffer empty</td>
+       <td style="text-align:left;">缓冲区为空</td>
       </tr>
       <tr>
        <td style="text-align:left;"><code>playbackBufferFull</code></td>
        <td style="text-align:left;">boolean</td>
-       <td style="text-align:left;">buffer full</td>
+       <td style="text-align:left;">缓冲区已满</td>
       </tr>
       <tr>
        <td style="text-align:left;"><code>playbackLikelyToKeepUp</code></td>
        <td style="text-align:left;">boolean</td>
-       <td style="text-align:left;">playback likely to keep up</td>
+       <td style="text-align:left;">缓冲数据是否跟的上播放（playback likely to keep up）</td>
       </tr>
       <tr>
        <td style="text-align:left;"><code>loadedTimeRanges</code></td>
        <td style="text-align:left;">array</td>
-       <td style="text-align:left;">array of loaded time ranges</td>
+       <td style="text-align:left;">加载时间范围/td>
       </tr>
       <tr>
        <td style="text-align:left;"><code>seekableTimeRanges</code></td>
        <td style="text-align:left;">array</td>
-       <td style="text-align:left;">array of seekable time ranges</td>
+       <td style="text-align:left;">可定位的时间范围</td>
       </tr>
       </tbody>
       </table>
-      <p>Ranges are defined as dictionaries with the following keys:</p>
+      <p>范围定义为包含以下键字典：</p>
 
       <table>
       <colgroup>
@@ -1395,9 +1364,9 @@ position: 14.467000
 
       <thead>
       <tr>
-       <th style="text-align:left;">key</th>
-       <th style="text-align:left;">type</th>
-       <th style="text-align:left;">description</th>
+       <th style="text-align:left;">键</th>
+       <th style="text-align:left;">类型</th>
+       <th style="text-align:left;">描述</th>
       </tr>
       </thead>
 
@@ -1405,18 +1374,18 @@ position: 14.467000
       <tr>
        <td style="text-align:left;"><code>start</code></td>
        <td style="text-align:left;">real</td>
-       <td style="text-align:left;">range start time in seconds</td>
+       <td style="text-align:left;">范围的开始时长（秒）</td>
       </tr>
       <tr>
        <td style="text-align:left;"><code>duration</code></td>
        <td style="text-align:left;">real</td>
-       <td style="text-align:left;">range duration in seconds</td>
+       <td style="text-align:left;">范围的时长（秒）</td>
       </tr>
       </tbody>
       </table>
-      <p><span class="ex">Example:</span> get playback info</p>
+      <p><span class="ex">示例：</span> 获取播放信息</p>
 
-      <p class="cli_srv">client &rarr; server</p>
+      <p class="cli_srv">客户端 &rarr; 服务器</p>
 
       <pre><code>GET /playback-info HTTP/1.1
 Content-Length: 0
@@ -1424,7 +1393,7 @@ User-Agent: MediaControl/1.0
 X-Apple-Session-ID: 24b3fd94-1b6d-42b1-89a3-47108bfbac89
 </code></pre>
 
-      <p class="srv_cli">server &rarr; client</p>
+      <p class="srv_cli">服务器 &rarr; 客户端</p>
 
       <pre><code>HTTP/1.1 200 OK
 Date: Fri, 16 Mar 2012 15:31:42 GMT
@@ -1466,8 +1435,7 @@ X-Transmit-Date: 2012-03-16T15:31:42.607066Z
 
       <h3>PUT /setProperty</h3>
 
-      <p>Set playback property. The property name is sent as query argument. The
-      following properties are defined:</p>
+      <p>设置播放属性。属性名称作为查询参数发送。定义了以下属性：</p>
 
       <table>
       <colgroup>
@@ -1477,25 +1445,25 @@ X-Transmit-Date: 2012-03-16T15:31:42.607066Z
 
       <thead>
       <tr>
-       <th style="text-align:left;">argument</th>
-       <th style="text-align:left;">description</th>
+       <th style="text-align:left;">参数</th>
+       <th style="text-align:left;">描述</th>
       </tr>
       </thead>
 
       <tbody>
       <tr>
        <td style="text-align:left;"><code>forwardEndTime</code></td>
-       <td style="text-align:left;">forward end time</td>
+       <td style="text-align:left;">播放的结束时间</td>
       </tr>
       <tr>
        <td style="text-align:left;"><code>reverseEndTime</code></td>
-       <td style="text-align:left;">reverse end time</td>
+       <td style="text-align:left;">倒放的结束时间</td>
       </tr>
       </tbody>
       </table>
-      <p><span class="ex">Example:</span> set forward end time</p>
+      <p><span class="ex">示例：</span> 设置播放结束时间</p>
 
-      <p class="cli_srv">client &rarr; server</p>
+      <p class="cli_srv">客户端 &rarr; 服务器</p>
 
       <pre><code>PUT /setProperty?forwardEndTime HTTP/1.1
 Content-Type: application/x-apple-binary-plist
@@ -1520,7 +1488,7 @@ X-Apple-Session-ID: 24b3fd94-1b6d-42b1-89a3-47108bfbac89
 &lt;/plist&gt;
 </code></pre>
 
-      <p class="srv_cli">server &rarr; client</p>
+      <p class="srv_cli">服务器 &rarr; 客户端</p>
 
       <pre><code>HTTP/1.1 200 OK
 Date: Fri, 16 Mar 2012 15:23:11 GMT
@@ -1542,8 +1510,7 @@ Content-Length: 58
 
       <h3>GET /getProperty</h3>
 
-      <p>Get playback property. The property name is sent as query argument. The
-      following properties are defined:</p>
+      <p>获取播放属性。属性名称作为查询参数发送。定义了以下属性：</p>
 
       <table>
       <colgroup>
@@ -1553,25 +1520,25 @@ Content-Length: 58
 
       <thead>
       <tr>
-       <th style="text-align:left;">argument</th>
-       <th style="text-align:left;">description</th>
+       <th style="text-align:left;">参数</th>
+       <th style="text-align:left;">描述</th>
       </tr>
       </thead>
 
       <tbody>
       <tr>
        <td style="text-align:left;"><code>playbackAccessLog</code></td>
-       <td style="text-align:left;">playback access log</td>
+       <td style="text-align:left;">播放访问日志</td>
       </tr>
       <tr>
        <td style="text-align:left;"><code>playbackErrorLog</code></td>
-       <td style="text-align:left;">playback error log</td>
+       <td style="text-align:left;">播放错误日志</td>
       </tr>
       </tbody>
       </table>
-      <p><span class="ex">Example:</span> get playback access log</p>
+      <p><span class="ex">示例：</span>获取播放访问日志</p>
 
-      <p class="cli_srv">client &rarr; server</p>
+      <p class="cli_srv">客户端 &rarr; 服务器</p>
 
       <pre><code>POST /getProperty?playbackAccessLog HTTP/1.1
 Content-Type: application/x-apple-binary-plist
@@ -1580,7 +1547,7 @@ User-Agent: MediaControl/1.0
 X-Apple-Session-ID: 24b3fd94-1b6d-42b1-89a3-47108bfbac89
 </code></pre>
 
-      <p class="srv_cli">server &rarr; client</p>
+      <p class="srv_cli">服务器 &rarr; 客户端</p>
 
       <pre><code>HTTP/1.1 200 OK
 Date: Fri, 16 Mar 2012 15:31:42 GMT
@@ -1620,8 +1587,8 @@ Content-Length: 530
 &lt;/plist&gt;
 </code></pre>
 
-      <h2 id="video-events">4.2. Events</h2>
-      <p>This event is used to send the playback state to the client:</p>
+      <h2 id="video-events">4.2. 事件</h2>
+      <p>用于将播放状态发送到客户端：</p>
 
       <table>
       <colgroup>
@@ -1632,9 +1599,9 @@ Content-Length: 530
 
       <thead>
       <tr>
-       <th style="text-align:left;">key</th>
-       <th style="text-align:left;">type</th>
-       <th style="text-align:left;">description</th>
+       <th style="text-align:left;">键</th>
+       <th style="text-align:left;">类型</th>
+       <th style="text-align:left;">描述</th>
       </tr>
       </thead>
 
@@ -1647,18 +1614,18 @@ Content-Length: 530
       <tr>
        <td style="text-align:left;">sessionID</td>
        <td style="text-align:left;">integer</td>
-       <td style="text-align:left;">session id</td>
+       <td style="text-align:left;">会话ID</td>
       </tr>
       <tr>
        <td style="text-align:left;">state</td>
        <td style="text-align:left;">string</td>
-       <td style="text-align:left;"><code>loading</code>, <code>playing</code>, <code>paused</code> or <code>stopped</code></td>
+       <td style="text-align:left;"><code>loading</code>, <code>playing</code>, <code>paused</code>或<code>stopped</code></td>
       </tr>
       </tbody>
       </table>
-      <p><span class="ex">Example:</span> notify the client that video playback is paused</p>
+      <p><span class="ex">示例：</span>通知客户端视频播放已暂停</p>
 
-      <p class="srv_cli">server &rarr; client</p>
+      <p class="srv_cli">服务器 &rarr; 客户端</p>
 
       <pre><code>POST /event HTTP/1.1
 Content-Type: application/x-apple-plist
@@ -1680,7 +1647,7 @@ X-Apple-Session-ID: 00000000-0000-0000-0000-000000000000
 &lt;/plist&gt;
 </code></pre>
 
-      <p class="cli_srv">client &rarr; server</p>
+      <p class="cli_srv">客户端 &rarr; 服务器</p>
 
       <pre><code>HTTP/1.1 200 OK
 Content-Length: 0
